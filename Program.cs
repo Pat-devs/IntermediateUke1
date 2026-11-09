@@ -12,24 +12,11 @@ while (true)
     {
         Console.Write("Navn: ");
         string name = (Console.ReadLine() ?? "").Trim();
-        if (name.Length > 0)
+
+        bool registered = TryRegister(participants, name, Capacity);
+        if (registered)
         {
-            if (!participants.Contains(name))
-            {
-                if (participants.Count < Capacity)
-                {
-                    participants.Add(name);
-                    Console.WriteLine("Registrert.");    
-                }          
-                else 
-                { 
-                    Console.WriteLine("Avvist."); 
-                }      
-            }     
-            else 
-            { 
-                Console.WriteLine("Avvist."); 
-            }      
+            Console.WriteLine("Registrert.");
         }   
         else 
         { 
@@ -48,4 +35,23 @@ while (true)
     { 
         Console.WriteLine("Ukjent valg."); 
     }
+}
+
+static bool TryRegister(List<string> participants, string name, int capacity)
+{
+    if (name.Length == 0)
+    {
+        return false;
+    } 
+    if (participants.Contains(name))
+    {
+        return false;
+    }
+    if (participants.Count >= capacity)
+    {
+        return false;
+    }
+
+    participants.Add(name);
+    return true;
 }
