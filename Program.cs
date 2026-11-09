@@ -1,4 +1,5 @@
-﻿List<string> participants = new List<string>();
+﻿const int capacity = 3;
+List<string> participants = new List<string>();
 while (true)
 {
     Console.WriteLine("1 Registrer | 2 Vis | 0 Avslutt");
@@ -15,7 +16,7 @@ while (true)
         {
             if (!participants.Contains(name))
             {
-                if (participants.Count < 3)
+                if (participants.Count < capacity)
                 {
                     participants.Add(name);
                     Console.WriteLine("Registrert.");    
@@ -37,7 +38,7 @@ while (true)
     } 
     else if (choice == "2")
     {
-        Console.WriteLine($"Deltakere: {participants.Count}/3");
+        Console.WriteLine($"Deltakere: {participants.Count}/{capacity}");
         foreach (string participant in participants) 
         { 
             Console.WriteLine(participant); 
