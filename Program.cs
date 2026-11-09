@@ -1,5 +1,5 @@
-﻿const int Capacity = 3;
-List<string> participants = new List<string>();
+﻿Course course = new Course(3);
+
 while (true)
 {
     Console.WriteLine("1 Registrer | 2 Vis | 0 Avslutt");
@@ -13,7 +13,7 @@ while (true)
         Console.Write("Navn: ");
         string name = (Console.ReadLine() ?? "").Trim();
 
-        bool registered = TryRegister(participants, name, Capacity);
+        bool registered = course.TryRegister(name);
         if (registered)
         {
             Console.WriteLine("Registrert.");
@@ -25,7 +25,7 @@ while (true)
     } 
     else if (choice == "2")
     {
-        ShowParticipants(participants, Capacity);
+        ShowParticipants(course.GetParticipants(), course.Capacity);
     }
     else 
     { 
@@ -33,24 +33,6 @@ while (true)
     }
 }
 
-static bool TryRegister(List<string> participants, string name, int capacity)
-{
-    if (name.Length == 0)
-    {
-        return false;
-    } 
-    if (participants.Contains(name))
-    {
-        return false;
-    }
-    if (participants.Count >= capacity)
-    {
-        return false;
-    }
-
-    participants.Add(name);
-    return true;
-}
 
 static void ShowParticipants(List<string> participants, int capacity)
 {
