@@ -1,44 +1,26 @@
 ﻿Course course = new Course(3);
+CourseView view = new CourseView();
 
 while (true)
 {
-    Console.WriteLine("1 Registrer | 2 Vis | 0 Avslutt");
-    string? choice = Console.ReadLine();
-    if (choice == "0" || choice == null) 
+    string choice = view.ReadChoice();
+
+    if (choice == "0")
     {
         break;
     }
     if (choice == "1")
     {
-        Console.Write("Navn: ");
-        string name = (Console.ReadLine() ?? "").Trim();
-
+        string name = view.ReadName();
         bool registered = course.TryRegister(name);
-        if (registered)
-        {
-            Console.WriteLine("Registrert.");
-        }   
-        else 
-        { 
-            Console.WriteLine("Avvist."); 
-        }    
+        view.ShowRegistrationResult(registered);
     } 
     else if (choice == "2")
     {
-        ShowParticipants(course.GetParticipants(), course.Capacity);
+        view.ShowParticipants(course.GetParticipants(), course.Capacity);
     }
     else 
     { 
-        Console.WriteLine("Ukjent valg."); 
-    }
-}
-
-
-static void ShowParticipants(List<string> participants, int capacity)
-{
-    Console.WriteLine($"Deltakere: {participants.Count}/{capacity}");
-    foreach (string participant in participants) 
-    { 
-        Console.WriteLine(participant); 
+        view.ShowUnkownChoice();
     }
 }
