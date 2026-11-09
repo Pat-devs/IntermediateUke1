@@ -1,20 +1,20 @@
-﻿List<string> n = new List<string>();
+﻿List<string> participants = new List<string>();
 while (true)
 {
 Console.WriteLine("1 Registrer | 2 Vis | 0 Avslutt");
-string? x = Console.ReadLine();
-if (x == "0" || x == null) { break; }
-if (x == "1")
+string? choice = Console.ReadLine();
+if (choice == "0" || choice == null) { break; }
+if (choice == "1")
 {
 Console.Write("Navn: ");
-string s = (Console.ReadLine() ?? "").Trim();
-if (s.Length > 0)
+string name = (Console.ReadLine() ?? "").Trim();
+if (name.Length > 0)
 {
-if (!n.Contains(s))
+if (!participants.Contains(name))
 {
-if (n.Count < 3)
+if (participants.Count < 3)
 {
-n.Add(s);
+participants.Add(name);
 Console.WriteLine("Registrert.");    
 }          
 else { Console.WriteLine("Avvist."); }      
@@ -23,10 +23,10 @@ else { Console.WriteLine("Avvist."); }
 }   
 else { Console.WriteLine("Avvist."); }    
 } 
-else if (x == "2")
+else if (choice == "2")
 {
-Console.WriteLine($"Deltakere: {n.Count}/3");
-foreach (string v in n) { Console.WriteLine(v); }
+Console.WriteLine($"Deltakere: {participants.Count}/3");
+foreach (string participant in participants) { Console.WriteLine(participant); }
 }
 else { Console.WriteLine("Ukjent valg."); }
 }
