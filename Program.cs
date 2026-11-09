@@ -25,11 +25,7 @@ while (true)
     } 
     else if (choice == "2")
     {
-        Console.WriteLine($"Deltakere: {participants.Count}/{Capacity}");
-        foreach (string participant in participants) 
-        { 
-            Console.WriteLine(participant); 
-        }
+        ShowParticipants(participants, Capacity);
     }
     else 
     { 
@@ -54,4 +50,13 @@ static bool TryRegister(List<string> participants, string name, int capacity)
 
     participants.Add(name);
     return true;
+}
+
+static void ShowParticipants(List<string> participants, int capacity)
+{
+    Console.WriteLine($"Deltakere: {participants.Count}/{capacity}");
+    foreach (string participant in participants) 
+    { 
+        Console.WriteLine(participant); 
+    }
 }
