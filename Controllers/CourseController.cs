@@ -29,6 +29,13 @@ class CourseController
             {
                 _view.ShowParticipants(_course.GetParticipants(), _course.Capacity);
             }
+            else if (choice == "3")
+            {
+                _view.ShowHeading("Godkjente navn:");
+                _view.ShowNames(_course.GetNameHistory());
+                _view.ShowHeading("Antall etter hver godkjente registering.");
+                _view.ShowCounts(_course.GetCountHistory());
+            }
             else 
             { 
                 _view.ShowUnkownChoice();

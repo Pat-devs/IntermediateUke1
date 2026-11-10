@@ -1,6 +1,8 @@
 public class Course
 {
     private List<string> _participants = new List<string>();
+    private TextHistory _nameHistory = new TextHistory();
+    private NumberHistory _countHistory = new NumberHistory();
     public int Capacity { get; private set; }
 
     public int Count
@@ -29,7 +31,17 @@ public class Course
         }
 
         _participants.Add(name);
+        _nameHistory.Add(name);
+        _countHistory.Add(Count);
         return true;
+    }
+    public List<string> GetNameHistory()
+    {
+        return _nameHistory.GetSnapShot();
+    }
+    public List<int> GetCountHistory()
+    {
+        return _countHistory.GetSnapShot();
     }
 
     public List<string> GetParticipants()
