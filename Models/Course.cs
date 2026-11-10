@@ -1,8 +1,8 @@
 public class Course
 {
     private List<string> _participants = new List<string>();
-    private TextHistory _nameHistory = new TextHistory();
-    private NumberHistory _countHistory = new NumberHistory();
+    private History<string> _nameHistory = new History<string>();
+    private History<int> _countHistory = new History<int>();
     public int Capacity { get; private set; }
 
     public int Count
